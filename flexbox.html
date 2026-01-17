@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Website with Layouts with FlexBox</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: rgb(78, 25, 163);
+      color: #1f1f1f;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #111;
+      margin: 2rem 0;
+      font-size: 2.5rem;
+    }
+
+    h1::after {
+      content: "";
+      display: block;
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(to right, #16619e, #005bb5);
+      margin: 1rem auto;
+    }
+
+    h2 {
+      color: #070649;
+      margin: 2rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #e0e0e0;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #003049;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .logo {
+      color: white;
+      font-size: 1.8rem;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-cta {
+      background: #ff595e;
+      padding: 0.7rem 1.3rem;
+      border-radius: 50px;
+    }
+
+    /* Cards */
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      flex: 1 1 300px;
+      max-width: 350px;
+      transition: 0.3s;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+    }
+
+    .card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 3px solid #003c8f;
+    }
+
+    .card-content {
+      padding: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .card-title {
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .card-desc {
+      margin-bottom: 1.5rem;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .card-button {
+      background: #003c8f;
+      color: white;
+      padding: 0.7rem 1.3rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-top: auto;
+      transition: 0.3s;
+    }
+
+    .card-button:hover {
+      background: #002a63;
+    }
+
+    /* Pricing */
+    .pricing-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .pricing-plan {
+      background: white;
+      border-radius: 15px;
+      text-align: center;
+      padding: 2rem;
+      max-width: 320px;
+      flex: 1 1 280px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      transition: 0.3s;
+    }
+
+    .pricing-plan:hover {
+      transform: translateY(-10px);
+    }
+
+    .plan-title {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .plan-price {
+      font-size: 2rem;
+      color: #3d348b;
+      margin: 1rem 0;
+      font-weight: bold;
+    }
+
+    .plan-features {
+      list-style: none;
+      margin: 1.5rem 0;
+      flex-grow: 1;
+    }
+
+    .plan-features li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .plan-button {
+      background: #3d348b;
+      color: white;
+      padding: 0.9rem 1.6rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .plan-button:hover {
+      background: #2a2566;
+    }
+
+    .popular {
+      border: 2px solid #3d348b;
+      position: relative;
+    }
+
+    .popular-tag {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #ff0054;
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin: 3rem 0;
+      color: #333;
+    }
+
+    /* Responsive */
+    @media(max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Website with Layouts with FlexBox</h1>
+    </header>
+
+    <nav class="navbar">
+      <a href="#" class="logo">FlexBox Site</a>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Layouts</a></li>
+        <li><a href="#">Templates</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#" class="nav-cta">Get Started</a></li>
+      </ul>
+    </nav>
+
+    <section id="cards">
+      <h2>Available Layouts</h2>
+
+      <div class="card-container">
+        <div class="card">
+          <img src="img1.webp" class="card-img" />
+          <div class="card-content">
+            <h3 class="card-title">Landing Page</h3>
+            <p class="card-desc">Clean and modern layout suitable for marketing websites.</p>
+            <button class="card-button">View Demo</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="img2.webp" class="card-img" />
+          <div class="card-content">
+            <h3 class="card-title">Portfolio Layout</h3>
+            <p class="card-desc">Showcase your designs, artworks or projects with style.</p>
+            <button class="card-button">Preview</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="img3.jpg" class="card-img" />
+          <div class="card-content">
+            <h3 class="card-title">Business Layout</h3>
+            <p class="card-desc">Perfect for professional business and corporate websites.</p>
+            <button class="card-button">Explore</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="pricing">
+      <h2>Pricing Plans</h2>
+      <div class="pricing-container">
+
+        <div class="pricing-plan">
+          <h3 class="plan-title">Starter</h3>
+          <div class="plan-price">Rs.1000</Rs></div>
+          <ul class="plan-features">
+            <li>Single Page Layout</li>
+            <li>Basic Support</li>
+            <li>Email Delivery</li>
+          </ul>
+          <button class="plan-button">Select</button>
+        </div>
+
+        <div class="pricing-plan popular">
+          <div class="popular-tag">Best</div>
+          <h3 class="plan-title">Professional</h3>
+          <div class="plan-price">Rs.5000</div>
+          <ul class="plan-features">
+            <li>Full Layout Pack</li>
+            <li>Priority Support</li>
+            <li>Responsive Design</li>
+          </ul>
+          <button class="plan-button">Select</button>
+        </div>
+
+        <div class="pricing-plan">
+          <h3 class="plan-title">Enterprise</h3>
+          <div class="plan-price">Rs.10000</div>
+          <ul class="plan-features">
+            <li>Custom Layout</li>
+            <li>Dedicated Manager</li>
+            <li>24/7 Support</li>
+          </ul>
+          <button class="plan-button">Select</button>
+        </div>
+
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2026 | FlexBox Layout Website</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>
